@@ -38,7 +38,7 @@ const createAndMailUsers = async (req, res) => {
                 from: process.env.EMAIL_ID,
                 to: mailReceiver,
                 subject: `${req.body.name} Contacted through portfolio form`,
-                text: `${req.body.message}\n\n My mail id is ${req.body.email}\n\n Thanks and Regards \n${req.body.name}`
+                text: `${req.body.message}\n\n👆This mail is received from ${req.body.email}\n\n Thanks and Regards \n${req.body.name}`
             };
 
             // Send mail
@@ -87,6 +87,10 @@ const createAndMailUsers = async (req, res) => {
             handleUserCreationAndEmail("User Created and Mailed Successfully")
         }
         else {
+            if(user.mobile == null && req.body.mobile!==""){
+                await userModel.deleteOne({ email: req.body.email})
+                await userModel.create(req.body)
+            }
             handleUserCreationAndEmail("User already available and mailed successfully")
         }
     } catch (error) {
