@@ -8,7 +8,7 @@ const validateEmail = (e)=>{
 const userSchema = new mongoose.Schema({
     name:{type:String,required:[true,"Name is required"]},
     email:{type:String,required:[true,"Email is required"],validate:validateEmail},
-    mobile:{type:Number,required:[true,"Mobile Number is required"]}
+    mobile:{type:Number}
 },{
     collection:'users',
     versionKey:false
