@@ -80,6 +80,7 @@ const createAndMailUsers = async (req, res) => {
         }
     }
 
+    //Actual working
     try {
         let user = await userModel.findOne({ email: req.body.email })
         if (!user) {
